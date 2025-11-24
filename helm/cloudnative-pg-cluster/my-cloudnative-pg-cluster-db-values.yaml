@@ -1,32 +1,23 @@
-# values-cluster.yaml
-#
-# Helm values for the cnpg/cluster chart to produce:
-# apiVersion: postgresql.cnpg.io/v1
-# kind: Cluster
-# name: my-db
-# namespace: app-db
+
+fullnameOverride: argocd-helm-cnpg-cluster-db
+namespaceOverride: argocd-cnpg-cluster-db
 
 cluster:
-  metadata:
-    name: argo-cnpg-cluster-app-db
-    namespace: argocd-cnpg-cluster-db
+  instances: 2
 
-  spec:
-    instances: 2
+  storage:
+    size: 2Gi
 
-    storage:
-      size: 2Gi
+  imageName: ghcr.io/cloudnative-pg/postgresql:16
 
-    imageName: ghcr.io/cloudnative-pg/postgresql:16
+  # <-- questo diventa spec.initdb nel CR
+  initdb:
+    database: appdb
+    owner: appuser
+    secret:
+      name: my-db-appuser-secret
 
-    bootstrap:
-      initdb:
-        database: appdb
-        owner: appuser
-        secret:
-          name: my-db-appuser-secret
+  monitoring:
+    enabled: false
 
-    monitoring:
-      enablePodMonitor: false
-
-    primaryUpdateStrategy: unsupervised
+  primaryUpdateStrategy: unsupervised
