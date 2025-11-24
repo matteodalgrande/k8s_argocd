@@ -1,0 +1,4 @@
+# values-istio-gateway.yaml
+
+service:
+  type: LoadBalancer

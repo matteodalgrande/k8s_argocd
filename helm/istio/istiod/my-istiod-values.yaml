@@ -1,0 +1,9 @@
+# values-istiod.yaml
+global:
+  proxy:
+    # Controls the log level of the Envoy sidecar
+    logLevel: warning
+
+meshConfig:
+  # Disable tracing unless you have Jaeger/Tempo
+  enableTracing: false
