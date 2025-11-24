@@ -1,0 +1,38 @@
+# https://github.com/Keyfactor/ejbca-ce/tree/r9.1.1/charts/ejbca
+ejbca:
+  # use the external DB, not the in-container H2
+  useEphemeralH2Database: false
+
+  # plain env vars
+  env:
+    DATABASE_JDBC_URL: jdbc:postgresql://my-db-rw.app-db.svc.cluster.local:5432/appdb
+
+  # env populated from your existing secret
+  envRaw:
+    - name: DATABASE_USER
+      valueFrom:
+        secretKeyRef:
+          name: my-db-appuser-secret
+          key: username
+    - name: DATABASE_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: my-db-appuser-secret
+          key: password
+
+services:
+  # service diretto verso il container EJBCA
+  directHttp:
+    enabled: true
+    type: LoadBalancer        # MetalLB assegna l'IP
+    bindIP: 0.0.0.0
+    httpPort: 8081            # porta per Admin Web (o HTTP)
+    httpsPort: 8082           # seconda porta sullo stesso LB (RA / servizi)
+
+  # niente AJP
+  proxyAJP:
+    enabled: false
+
+  # niente proxyHttp
+  proxyHttp:
+    enabled: false
