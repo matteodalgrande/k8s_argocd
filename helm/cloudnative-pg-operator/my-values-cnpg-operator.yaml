@@ -1,0 +1,50 @@
+# values-operator.yaml
+#
+# Recommended baseline for CloudNativePG operator installation
+# via the cnpg/cloudnative-pg Helm chart.
+
+crds:
+  create: true
+
+webhook:
+  enabled: true
+
+monitoring:
+  prometheus:
+    enabled: true
+  grafana:
+    enabled: false
+
+rbac:
+  create: true
+
+serviceAccount:
+  create: true
+  name: cnpg-operator
+
+manager:
+  replicas: 1                # operator replica count
+  logLevel: info
+  image:
+    repository: ghcr.io/cloudnative-pg/cloudnative-pg
+    tag: 1.27.1              # match your desired operator version
+
+# Metrics endpoint for Prometheus Operator or another scraper
+metrics:
+  enabled: true
+  serviceMonitor:
+    enabled: true            # enable this only if you have prometheus-operator!
+    labels:
+      release: prometheus    # adjust if needed
+
+# Mutating & Validating webhook settings
+webhookServer:
+  port: 8443
+  timeoutSeconds: 10
+
+# Leader election (recommended for HA setups)
+leaderElection:
+  enabled: true
+  leaseDuration: 15s
+  renewDeadline: 10s
+  retryPeriod: 2s

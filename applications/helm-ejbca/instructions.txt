@@ -1,0 +1,7 @@
+k create ns argocd-helm-ejbca
+
+
+k create secret generic my-db-appuser-secret \
+          --from-literal=username="$DB_USER" \
+          --from-literal=password="$DB_PASSWORD" \
+  -n argocd-helm-ejbca

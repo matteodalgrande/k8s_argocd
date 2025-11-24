@@ -1,0 +1,9 @@
+k create namespace cnpg-cluster-app-db
+
+DB_USER="appuser"
+DB_PASSWORD="supersecretpass"
+
+k create secret generic my-db-appuser-secret \
+  --from-literal=username="$DB_USER" \
+  --from-literal=password="$DB_PASSWORD" \
+  -n cnpg-cluster-app-db
