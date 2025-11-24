@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/rslim087a/argocd-kubernetes-gitops-tutorial.git
+    repoURL: https://github.com/matteodalgrande/k8s_argocd.git
     targetRevision: HEAD
-    path: kustomize/overlays/dev
+    path: kustomize/overlays/dev # <-- this is the source of true
   destination:
     server: https://kubernetes.default.svc
     namespace: grade-demo

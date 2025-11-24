@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/matteodalgrande/k8s_argocd.git
     targetRevision: HEAD
-    path: gitops/basic
+    path: gitops/basic # <-- This is the source of true in the repo.
   destination: # it is where we want to deploy our resources
     server: https://kubernetes.default.svc
     namespace: grade-demo
