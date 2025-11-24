@@ -5,7 +5,7 @@ ejbca:
 
   # plain env vars
   env:
-    DATABASE_JDBC_URL: jdbc:postgresql://my-db-rw.app-db.svc.cluster.local:5432/appdb
+    DATABASE_JDBC_URL: jdbc:postgresql://argocd-helm-cnpg-cluster-db-rw.argocd-cnpg-cluster-db.svc.cluster.local:5432/appdb
 
   # env populated from your existing secret
   envRaw:

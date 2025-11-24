@@ -14,7 +14,7 @@ spec:
         - my-ejbca-values.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: grade-helm-demo
+    namespace: argocd-helm-ejbca
   syncPolicy:
     automated:
       prune: true
