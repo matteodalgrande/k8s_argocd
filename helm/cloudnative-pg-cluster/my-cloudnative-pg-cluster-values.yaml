@@ -8,8 +8,8 @@
 
 cluster:
   metadata:
-    name: my-db
-    namespace: app-db
+    name: argo-cnpg-cluster-app-db
+    namespace: cnpg-cluster-app-db
 
   spec:
     instances: 2
