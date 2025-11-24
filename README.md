@@ -5,45 +5,47 @@ Installation ArgoCD
 
 ✅ 1. Add the Argo CD Helm repo
 
-
+```
 helm repo add argo https://argoproj.github.io/argo-helm
 helm repo update
-
+```
 
 ✅ 2. Pick the Argo CD chart version
 Check available versions:
-
+```
 helm search repo argo/argo-cd --versions
-
+```
 Example output includes versions like:
-	• 7.5.x
-	• 7.4.x
-	• etc.
+```
+• 7.5.x
+• 7.4.x
+• etc.
+```
 Let's assume you want to install chart version 7.5.2 (example — replace with your preferred one).
 
 ✅ 3. create a namespace
 
-
+```
 k create namespace argocd
-
+```
 
 ✅ 4. (Optional) Provide a custom values.yaml
 If you want to modify the installation (e.g., enabling LoadBalancer or Ingress), create a file:
 values.yaml
-
+```
 server:
   service:
     type: LoadBalancer
   ingress:
     enabled: false
-
+```
 Then install with:
-
+```
 helm install argocd argo/argo-cd \
   -n argocd \
   -f values.yaml \
   --version 9.1.4
-
+```
 
 
 
@@ -54,29 +56,31 @@ It takes long time to show the services…
 
 
 This deploys:
+```
 	• argocd-server
 	• argocd-application-controller
 	• argocd-repo-server
 	• dex (optional)
 	• redis
 	• configs / RBAC
-
+```
 ✅ 5. Access the UI
 Use the LB + the /etc/hosts file
 
 
 Open:
 
-https://argo.cd:80
+`https://argo.cd:80`
 
+```
 Username: admin
 password: JHaNFcepvlRt0C7R
-
+```
 ✅ 6. Get initial admin password
-
+```
 k -n argocd get secret argocd-initial-admin-secret \
   -o jsonpath="{.data.password}" | base64 -d
-
+```
 
 
 
