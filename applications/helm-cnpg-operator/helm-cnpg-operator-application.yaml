@@ -8,12 +8,10 @@ spec:
   source:
     repoURL: https://github.com/matteodalgrande/k8s_argocd.git
     targetRevision: HEAD
-    chart: cloudnative-pg
-    targetRevision: 0.26.1
-#    path: helm/cloudnative-pg-operator  # <-- source of true into the git repo
+    path: helm/cloudnative-pg-operator  # <-- source of true into the git repo
     helm:
       valueFiles:
-        - helm/cloudnative-pg-operator/my-values-cnpg-operator.yaml
+        - my-values-cnpg-operator.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: cnpg-system
