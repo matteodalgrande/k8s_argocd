@@ -7,3 +7,4 @@ global:
 meshConfig:
   # Disable tracing unless you have Jaeger/Tempo
   enableTracing: false
+
