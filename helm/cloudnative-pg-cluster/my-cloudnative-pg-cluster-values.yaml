@@ -9,7 +9,7 @@
 cluster:
   metadata:
     name: argo-cnpg-cluster-app-db
-    namespace: cnpg-cluster-app-db
+    namespace: argocd-cnpg-cluster-db
 
   spec:
     instances: 2

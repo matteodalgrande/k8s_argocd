@@ -1,4 +1,4 @@
-k create namespace cnpg-cluster-app-db
+k create namespace argocd-cnpg-cluster-db
 
 DB_USER="appuser"
 DB_PASSWORD="supersecretpass"
@@ -6,4 +6,4 @@ DB_PASSWORD="supersecretpass"
 k create secret generic my-db-appuser-secret \
   --from-literal=username="$DB_USER" \
   --from-literal=password="$DB_PASSWORD" \
-  -n cnpg-cluster-app-db
+  -n argocd-cnpg-cluster-db
