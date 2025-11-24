@@ -6,15 +6,15 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/rslim087a/argocd-kubernetes-gitops-tutorial.git
+    repoURL: https://github.com/matteodalgrande/k8s_argocd.git
     targetRevision: HEAD
     path: gitops/basic
-  destination:
+  destination: # it is where we want to deploy our resources
     server: https://kubernetes.default.svc
     namespace: grade-demo
   syncPolicy:
     automated:
-      prune: true
-      selfHeal: true
+      prune: true # Prune specifies whether to delete resources from the cluster that are not found in the sources anymore as part of automated synceit also delete resources which are removed from the gitops. (default: false)  
+      selfHeal: true # speciifes whether to revert resources back to their desired state upon modification in the cluster (default: false) - if someone delete or manually modify something into the cluster argoCD revert with the state of the repository ( Argo CD enforces Git as the single source of truth. ) 
     syncOptions:
-    - CreateNamespace=true
+    - CreateNamespace=true # if the namespace does not exists, it creates it.
