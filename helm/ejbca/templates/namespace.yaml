@@ -1,1 +1,6 @@
-/home/matteo/k8s_argocd/helm/ejbca/namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: argocd-helm-ejbca
+  labels:
+    istio-injection: "enabled"
