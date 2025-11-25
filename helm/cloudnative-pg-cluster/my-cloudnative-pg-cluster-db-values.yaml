@@ -9,6 +9,8 @@ cluster:
     size: 2Gi
 
   imageName: ghcr.io/cloudnative-pg/postgresql:16
+  annotations:
+    restart-trigger: "2025-11-25-01"
 
   # <-- questo diventa spec.initdb nel CR
   initdb:
