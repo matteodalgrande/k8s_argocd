@@ -36,3 +36,6 @@ services:
   # niente proxyHttp
   proxyHttp:
     enabled: false
+
+podAnnotations:
+  restart-trigger: "2025-11-25-01"
